@@ -85,3 +85,41 @@ def check_convergence(old_centroids, new_centroids, iteration, max_iterations):
     if iteration > max_iterations or error <= 0.00001:
         return True
     return False
+
+def calc_avg_dist(data,centroid):
+    dist = []
+    for i in data:
+        dist.append(compute_distance(i,centroid,'euclidean'))
+    dist = np.array(dist)
+    avg_dist = np.mean(dist)
+    return avg_dist
+
+def min_centroid_dist(centroid_array):
+    cen_dist = []
+    for i in centroid_array:
+        for j in centroid_array:
+            cen_dist.append(compute_distance(i,j,'euclidean'))
+    cen_dist = np.array(cen_dist)
+    cen_dist = cen_dist[cen_dist!=0]
+    min_dist = min(cen_dist)
+    return min_dist
+
+def calc_validity_ratio(clusters,centroids):
+    min_dist = min_centroid_dist(centroids)
+    j=0
+    dist = []
+    for i in range(1,no_of_clusters+1):
+        dist_m.append(calc_avg_dist(clusters[i],centroids[j]))
+        j = j+1
+    avg_dist = np.mean(dist)
+    val_ratio = avg_dist/min_dist
+    return val_ratio
+
+def calc_fuzzy(data,centroid):
+    fuzzy_dist = []
+    for i in data:
+        fuzzy_dist.append(compute_distance(i,centroid,'manhattan'))
+    num5 = np.array(fuzzy_dist)
+    den5 = max(num5)
+    fuzz_mem = 1-num5/den5
+    return fuzz_mem
