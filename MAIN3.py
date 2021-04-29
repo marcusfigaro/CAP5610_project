@@ -1,8 +1,4 @@
-'''
-Created on Apr 15, 2021
 
-@author: 14076
-'''
 import numpy as np
 import pandas as pd
 from sklearn.metrics import classification_report
@@ -122,28 +118,30 @@ def RandomForestF():
     #Plot accuracies vs k values
     #K_vs_ACC_plot(1, 101, X_train2, y_train2)
     
-    model= svm.SVC()
-    print(model.get_params().keys())
-    param_grid = {'C': np.arange(1, 30), 'kernel': ['linear','poly','rbf','sigmoid']}
+    # Using svm
+    #model= svm.SVC()
+    #print(model.get_params().keys())
+    #param_grid = {'C': np.arange(1, 300), 'kernel': ['linear','poly','rbf','sigmoid']}
 
-    
+    # Using KNN
     #model = KNeighborsClassifier()
     #print(model.get_params().keys())
     #param_grid = {'n_neighbors': np.arange(1, 30), 'weights': ["uniform", "distance"]}
     
-    
+    # Using random forest classifier
     #model = RandomForestClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30), 'n_jobs': np.arange(1, 30)}
     
-    
+    #Using decision tree
     #model = DecisionTreeClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30)}
 
-    #model = LogisticRegression()
-    #print(model.get_params().keys())
-    #param_grid = {'random_state': np.arange(1, 30)}
+    #Using logistic regression
+    model = LogisticRegression()
+    print(model.get_params().keys())
+    param_grid = {'random_state': np.arange(1, 30)}
     
     
     clff = GridSearchCV(model, param_grid, cv=5, scoring='accuracy')
@@ -154,11 +152,11 @@ def RandomForestF():
 
     # Running with best parameters
     # Running with best parameters
-    clff_best = svm.SVC(**clff.best_params_)
+    #clff_best = svm.SVC(**clff.best_params_)
     #clff_best = KNeighborsClassifier(**clff.best_params_)
     #clff_best = RandomForestClassifier(**clff.best_params_)
     #clff_best = DecisionTreeClassifier(**clff.best_params_)
-    #clff_best = LogisticRegression(**clff.best_params_)
+    clff_best = LogisticRegression(**clff.best_params_)
     
     
     start_time = time.time()
@@ -242,26 +240,27 @@ def L1RF():
     X_test2 = scaler.transform(X_test2)
   
     
-    
+    # Using svm
     #model= svm.SVC()
     #print(model.get_params().keys())
     #param_grid = {'C': np.arange(1, 300), 'kernel': ['linear','poly','rbf','sigmoid']}
 
-    
+    # Using KNN
     #model = KNeighborsClassifier()
     #print(model.get_params().keys())
     #param_grid = {'n_neighbors': np.arange(1, 30), 'weights': ["uniform", "distance"]}
     
-    
+    # Using random forest classifier
     #model = RandomForestClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30), 'n_jobs': np.arange(1, 30)}
     
-    
+    #Using decision tree
     #model = DecisionTreeClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30)}
 
+    #Using logistic regression
     model = LogisticRegression()
     print(model.get_params().keys())
     param_grid = {'random_state': np.arange(1, 30)}
@@ -359,26 +358,27 @@ def DTBFS():
     X_train3= scaler.fit_transform(X_train3)
     X_test3 = scaler.transform(X_test3)
     
-    
+    # Using svm
     #model= svm.SVC()
     #print(model.get_params().keys())
     #param_grid = {'C': np.arange(1, 300), 'kernel': ['linear','poly','rbf','sigmoid']}
 
-    
+    # Using KNN
     #model = KNeighborsClassifier()
     #print(model.get_params().keys())
     #param_grid = {'n_neighbors': np.arange(1, 30), 'weights': ["uniform", "distance"]}
     
-    
+    # Using random forest classifier
     #model = RandomForestClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30), 'n_jobs': np.arange(1, 30)}
     
-    
+    #Using decision tree
     #model = DecisionTreeClassifier()
     #print(model.get_params().keys())
     #param_grid = {'random_state': np.arange(1, 30)}
 
+    #Using logistic regression
     model = LogisticRegression()
     print(model.get_params().keys())
     param_grid = {'random_state': np.arange(1, 30)}
@@ -418,5 +418,10 @@ def DTBFS():
 
     
 if __name__ == '__main__':
+    # ac = RandomForestF()
+    # ac = L1RF_NB()
     ac = DTBFS()
+    
+    # ac = DTBFS_NB()
+    # ac = 
     print(ac)
