@@ -17,3 +17,5 @@ The naive bayes classification method of "L1 Regularization based feature extrac
 The naive bayes classification method of "Recursive Feature Elimination" is defined in naive_bayes.py, you can run the file directly.
 
 For the code work of check point1, you can run main1.py directly. 
+
+The default method in MAIN3.py is tree based feature selection using logistic regression for classification.
