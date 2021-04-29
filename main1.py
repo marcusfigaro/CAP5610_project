@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pandas as pd
-
+import sys
 
 import pandas as pd
 import warnings
@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     df=pd.DataFrame(labels, columns=['label'])
     sns.countplot(df["label"])
-    plt.show()
+    #plt.show()
 
     print('Separating Benign and Malignant Tumors based on labels')
 
@@ -54,8 +54,8 @@ if __name__ == '__main__':
     np.savetxt("data/malignant.csv",malignant,delimiter=',',header=features)
     np.savetxt("data/benign.csv",benign,delimiter=',',header=features)
 
-    malignant = np.loadtxt("malignant.csv", delimiter=',')
-    benign=np.loadtxt("benign.csv", delimiter=',')
+    malignant = np.loadtxt("data/malignant.csv", delimiter=',')
+    benign=np.loadtxt("data/benign.csv", delimiter=',')
 
     no_of_clusters=3  # still need to find optimum number of cluster by finding validity ratio
 
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     
-    clf = svm.SVC(C = 2, kernel = "poly") 
+    clf = svm.SVC(C = 1024, kernel = "linear") 
     
     clf = clf.fit(X_train, y_train)
     
